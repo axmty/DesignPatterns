@@ -1,40 +1,58 @@
 using System;
 
-namespace DesignPatterns.Creational
+namespace DesignPatterns.Creational.AbstractFactory
 {
-    public class AbstractFactory
+    /// <summary>
+    /// The client uses this AbstractFactory to first get a ConcreteFactory.
+    /// Either ConcreteFactory1 or ConcreteFactory2.
+    /// Then the client uses the AbstractFactory.Create method,
+    /// whose implementation depends on the instanciated Concrete Factory.
+    /// </summary>
+    public abstract class AbstractFactory
     {
-        public AbstractClass Create(string letter)
+        /// <summary>
+        /// Instanciates one of the Concrete Factory.
+        /// Here, we use a parameter to determine which Concrete Factory should be instanciated.static
+        /// But we could consider other scenarios where a config file is read to determine it.
+        /// </summary>
+        public static AbstractFactory GetFactory(int concreteFactoryNumber)
         {
-            return letter.ToLower() switch
+            return concreteFactoryNumber switch
             {
-                "a" => new ConcreteClassA(),
-                "b" => new ConcreteClassB(),
-                _ => throw new ArgumentException(
-                    "Must be an 'a' or a 'b' letter",
-                    nameof(letter))
+                1 => new ConcreteFactory1(),
+                2 => new ConcreteFactory2(),
+                _ => throw new ArgumentException("Must be 1 or 2", nameof(concreteFactoryNumber))
             };
         }
+
+        public abstract AbstractProduct Create();
     }
 
-    public abstract class AbstractClass
+    /// <summary>
+    /// This factory will instanciate ConcreteProduct1 objects.
+    /// </summary>
+    public class ConcreteFactory1 : AbstractFactory
     {
-        public abstract string Do();
-    }
-
-    public class ConcreteClassA : AbstractClass
-    {
-        public override string Do()
+        public override AbstractProduct Create()
         {
-            return "ConcreteClassA";
+            return new ConcreteProduct1();
         }
     }
 
-    public class ConcreteClassB : AbstractClass
+    /// <summary>
+    /// This factory will instanciate ConcreteProduct2 objects.
+    /// </summary>
+    public class ConcreteFactory2 : AbstractFactory
     {
-        public override string Do()
+        public override AbstractProduct Create()
         {
-            return "ConcreteClassB";
+            return new ConcreteProduct2();
         }
     }
+
+    public abstract class AbstractProduct { }
+
+    public class ConcreteProduct1 : AbstractProduct { }
+
+    public class ConcreteProduct2 : AbstractProduct { }
 }
