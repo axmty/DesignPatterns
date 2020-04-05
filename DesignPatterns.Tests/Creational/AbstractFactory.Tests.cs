@@ -8,7 +8,7 @@ namespace DesignPatterns.Tests.Creational
         [Fact]
         public void Create_ReturnsConcreteProduct1Instance_WithConcreteFactory1()
         {
-            this.CreateAndAssert<ConcreteProduct2>(2);
+            this.CreateAndAssert<ConcreteProduct1>(1);
         }
 
         [Fact]
