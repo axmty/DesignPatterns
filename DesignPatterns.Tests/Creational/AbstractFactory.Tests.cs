@@ -1,4 +1,4 @@
-using DesignPatterns.Creational;
+using DesignPatterns.Creational.AbstractFactory;
 using Xunit;
 
 namespace DesignPatterns.Tests.Creational
@@ -6,25 +6,25 @@ namespace DesignPatterns.Tests.Creational
     public class AbstractFactoryTests
     {
         [Fact]
-        public void Create_ReturnsConcreteClassAInstance_WhenAskingForIt()
+        public void Create_ReturnsConcreteProduct1Instance_WithConcreteFactory1()
         {
-            this.CreateAndAssert<ConcreteClassA>("a");
+            this.CreateAndAssert<ConcreteProduct2>(2);
         }
 
         [Fact]
-        public void Create_ReturnsConcreteClassBInstance_WhenAskingForIt()
+        public void Create_ReturnsConcreteProduct2Instance_WithConcreteFactory2()
         {
-            this.CreateAndAssert<ConcreteClassB>("b");
+            this.CreateAndAssert<ConcreteProduct2>(2);
         }
 
-        private void CreateAndAssert<TExpectedConcrete>(string createParam)
-            where TExpectedConcrete : AbstractClass, new()
+        private void CreateAndAssert<TExpectedConcrete>(int concreteFactoryNumber)
+            where TExpectedConcrete : AbstractProduct, new()
         {
-            var factory = new AbstractFactory();
+            var factory = AbstractFactory.GetFactory(concreteFactoryNumber);
 
-            var instance = factory.Create(createParam);
+            var product = factory.Create();
 
-            Assert.IsType<TExpectedConcrete>(instance);
+            Assert.IsType<TExpectedConcrete>(product);
         }
     }
 }
