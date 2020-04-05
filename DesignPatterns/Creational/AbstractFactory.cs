@@ -11,7 +11,7 @@ namespace DesignPatterns.Creational.AbstractFactory
     public abstract class AbstractFactory
     {
         /// <summary>
-        /// Instanciates one of the Concrete Factory.
+        /// Instanciates one of the ConcreteFactory.
         /// Here, we use a parameter to determine which Concrete Factory should be instanciated.static
         /// But we could consider other scenarios where a config file is read to determine it.
         /// </summary>

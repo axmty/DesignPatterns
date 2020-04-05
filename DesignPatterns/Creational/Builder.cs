@@ -1,7 +1,7 @@
 namespace DesignPatterns.Creational.Builder
 {
     /// <summary>
-    /// The client first instanciates one of the specific Product Builder.
+    /// The client first instanciates one of the concrete ProductBuilder.
     /// Then, it instanciates a new Director with that Builder.
     /// The Director.Construct method builds the different parts of the product,
     /// with the different ProductBuilder.BuildPart*** methods.
@@ -28,7 +28,8 @@ namespace DesignPatterns.Creational.Builder
     }
 
     /// <summary>
-    /// Abstract Product Builder that defines how the building of the different parts will be implemented.
+    /// Abstract Builder that defines how the building of the different parts will be implemented
+    /// within the specific concrete Builders.
     /// </summary>
     public abstract class ProductBuilder
     {
@@ -48,6 +49,9 @@ namespace DesignPatterns.Creational.Builder
         public abstract void BuildPartInt();
     }
 
+    /// <summary>
+    /// This builder will build the different parts of the product with falsy values.
+    /// </summary>
     public class FalsyProductBuilder : ProductBuilder
     {
         public override void BuildPartBool()
@@ -61,6 +65,9 @@ namespace DesignPatterns.Creational.Builder
         }
     }
 
+    /// <summary>
+    /// This builder will build the different parts of the product with truthy values.
+    /// </summary>
     public class TruthyProductBuilder : ProductBuilder
     {
         public override void BuildPartBool()
