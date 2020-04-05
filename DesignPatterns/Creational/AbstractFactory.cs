@@ -11,7 +11,7 @@ namespace DesignPatterns.Creational
                 "a" => new ConcreteClassA(),
                 "b" => new ConcreteClassB(),
                 _ => throw new ArgumentException(
-                    "Param 'letter' must be an 'a' or a 'b'",
+                    "Must be an 'a' or a 'b' letter",
                     nameof(letter))
             };
         }
