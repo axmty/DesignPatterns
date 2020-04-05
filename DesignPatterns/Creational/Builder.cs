@@ -1,35 +1,76 @@
 namespace DesignPatterns.Creational.Builder
 {
-    public interface IProductBuilder
+    /// <summary>
+    /// The client first instanciates one of the specific Product Builder.
+    /// Then, it instanciates a new Director with that Builder.
+    /// The Director.Construct method builds the different parts of the product,
+    /// with the different ProductBuilder.BuildPart*** methods.
+    /// </summary>
+    public class Director
     {
-        Product Build();
-    }
+        private readonly ProductBuilder _builder;
 
-    public class ProductBuilderA : IProductBuilder
-    {
-        public Product Build()
+        public Director(ProductBuilder builder)
         {
-            return new Product
-            {
-                BoolProperty = false,
-                IntProperty = 0,
-                DoubleProperty = 0.0,
-                StringProperty = "",
-            };
+            _builder = builder;
+        }
+
+        /// <summary>
+        /// "Assembles" the product by building the different parts of it, and returns it.
+        /// </summary>
+        public Product Construct()
+        {
+            _builder.BuildPartBool();
+            _builder.BuildPartInt();
+
+            return _builder.Result;
         }
     }
 
-    public class ProductBuilderB : IProductBuilder
+    /// <summary>
+    /// Abstract Product Builder that defines how the building of the different parts will be implemented.
+    /// </summary>
+    public abstract class ProductBuilder
     {
-        public Product Build()
+        /// <summary>
+        /// With this property, the Builder will be able to create only one Product.
+        /// We can imagine another method that will instanciate a Product at each call:
+        /// public Product GetResult() 
+        /// {
+        ///     return new Product { BoolProperty = this.BoolToSet, IntProperty = this.IntToSet };
+        /// }
+        /// where BoolProperty and IntProperty would be properties set by the BuildPart*** methods.
+        /// </summary>
+        public Product Result { get; } = new Product();
+
+        public abstract void BuildPartBool();
+
+        public abstract void BuildPartInt();
+    }
+
+    public class FalsyProductBuilder : ProductBuilder
+    {
+        public override void BuildPartBool()
         {
-            return new Product
-            {
-                BoolProperty = true,
-                IntProperty = 1,
-                DoubleProperty = 1.0,
-                StringProperty = "string",
-            };
+            this.Result.BoolProperty = false;
+        }
+
+        public override void BuildPartInt()
+        {
+            this.Result.IntProperty = 0;
+        }
+    }
+
+    public class TruthyProductBuilder : ProductBuilder
+    {
+        public override void BuildPartBool()
+        {
+            this.Result.BoolProperty = true;
+        }
+
+        public override void BuildPartInt()
+        {
+            this.Result.IntProperty = 1;
         }
     }
 
@@ -38,9 +79,5 @@ namespace DesignPatterns.Creational.Builder
         public bool BoolProperty { get; set; }
 
         public int IntProperty { get; set; }
-
-        public double DoubleProperty { get; set; }
-
-        public string StringProperty { get; set; }
     }
 }
