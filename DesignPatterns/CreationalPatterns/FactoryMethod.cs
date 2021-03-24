@@ -3,9 +3,15 @@
 namespace DesignPatterns.CreationalPatterns.FactoryMethod
 {
     /*
-        Factory Method is a creational design pattern that provides
-        an interface for creating objects in a superclass, but allows
-        subclasses to alter the type of objects that will be created.
+     *  Factory Method is a creational design pattern that provides
+     *  an interface for creating objects in a superclass, but allows
+     *  subclasses to alter the type of objects that will be created.
+     *  
+     *  PROS:
+     *  - Single Responsibility Principle: the code that creates the product is isolated (within the factory method CreateAnimal)
+     *  - Open/Closed Principle: easy to add new types of products without touching the AnimalFeeder.Feed or Test.Do methods
+     *  CONS:
+     *  - Can introduce several classes.
      */
 
     // The base creator class declares the factory method CreateAnimal.
