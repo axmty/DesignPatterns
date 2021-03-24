@@ -8,8 +8,8 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
      *  subclasses to alter the type of objects that will be created.
      *  
      *  PROS:
-     *  - Single Responsibility Principle: the code that creates the product is isolated (within the factory method CreateAnimal)
-     *  - Open/Closed Principle: easy to add new types of products without touching the AnimalFeeder.Feed or Test.Do methods
+     *  - Single Responsibility Principle: the code that creates the product is isolated (within the factory method CreateAnimal).
+     *  - Open/Closed Principle: easy to add new types of products without touching the AnimalFeeder.Feed or Test.Do methods.
      *  CONS:
      *  - Can introduce several classes.
      */
