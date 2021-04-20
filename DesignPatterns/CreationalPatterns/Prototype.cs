@@ -20,9 +20,7 @@ namespace DesignPatterns.CreationalPatterns.Prototype
     public abstract class Shape
     {
         private readonly int _x;
-
         private readonly int _y;
-
         private readonly string _color;
 
         protected Shape(int x, int y, string color)
