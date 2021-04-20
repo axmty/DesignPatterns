@@ -27,9 +27,9 @@ namespace DesignPatterns.CreationalPatterns.Prototype
 
         protected Shape(int x, int y, string color)
         {
-            this._x = x;
-            this._y = y;
-            this._color = color;
+            _x = x;
+            _y = y;
+            _color = color;
         }
 
         protected Shape(Shape other) : this(other._x, other._y, other._color)
@@ -47,14 +47,14 @@ namespace DesignPatterns.CreationalPatterns.Prototype
 
         public Rectangle(int x, int y, string color, int width, int height) : base(x, y, color)
         {
-            this._width = width;
-            this._height = height;
+            _width = width;
+            _height = height;
         }
 
         public Rectangle(Rectangle other) : base(other)
         {
-            this._width = other._width;
-            this._height = other._height;
+            _width = other._width;
+            _height = other._height;
         }
 
         public override Shape Clone()
@@ -69,12 +69,12 @@ namespace DesignPatterns.CreationalPatterns.Prototype
 
         public Circle(int x, int y, string color, int radius) : base(x, y, color)
         {
-            this._radius = radius;
+            _radius = radius;
         }
 
         public Circle(Circle other) : base(other)
         {
-            this._radius = other._radius;
+            _radius = other._radius;
         }
 
         public override Shape Clone()
@@ -83,45 +83,30 @@ namespace DesignPatterns.CreationalPatterns.Prototype
         }
     }
 
-    // Client code.
-    public class Application
-    {
-        private readonly List<Shape> _shapes = new();
-
-        public Application()
-        {
-            Circle circle = new(1, 2, "red", 3);
-            _shapes.Add(circle);
-
-            Shape anotherCircle = circle.Clone(); // Clone's return type is Shape.
-            _shapes.Add(anotherCircle);
-
-            Rectangle rectangle = new(1, 2, "blue", 4, 5);
-            _shapes.Add(rectangle);
-
-            Shape anotherRectangle = rectangle.Clone();
-            _shapes.Add(anotherRectangle);
-        }
-
-        public List<Shape> BusinessLogic()
-        {
-            List<Shape> shapesCopy = new();
-
-            foreach (var s in _shapes)
-            {
-                shapesCopy.Add(s.Clone()); // Don't need to worry about the concrete classes.
-            }
-
-            return shapesCopy;
-        }
-    }
-
-    public static class Test
+    public static class Sample
     {
         public static void Do()
         {
-            var app = new Application();
-            var shapesCopy = app.BusinessLogic();
+            List<Shape> shapes = new();
+
+            Circle circle = new(1, 2, "red", 3);
+            shapes.Add(circle);
+
+            Shape anotherCircle = circle.Clone(); // Clone's return type is Shape.
+            shapes.Add(anotherCircle);
+
+            Rectangle rectangle = new(1, 2, "blue", 4, 5);
+            shapes.Add(rectangle);
+
+            Shape anotherRectangle = rectangle.Clone();
+            shapes.Add(anotherRectangle);
+
+            List<Shape> shapeCopies = new();
+
+            foreach (var s in shapes)
+            {
+                shapeCopies.Add(s.Clone()); // Don't need to worry about the concrete classes.
+            }
         }
     }
 }

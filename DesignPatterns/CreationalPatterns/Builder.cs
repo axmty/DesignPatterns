@@ -140,18 +140,27 @@
         }
     }
 
-    public static class Test
+    public static class Sample
     {
         public static void Do()
         {
-            var director = new Director();
-            var builder = new CarBuilder();
+            Director director = new Director();
 
-            director.ConstructSportsCar(builder);
-            var car = builder.Build();
+            CarBuilder carBuilder = new CarBuilder(); // Knows how to create cars.
 
-            director.ConstructSUV(builder);
-            var carManual = builder.Build();
+            director.ConstructSportsCar(carBuilder); // The CarBuilder is now configured to create sports cars.
+            Car sportsCar = carBuilder.Build();
+
+            director.ConstructSUV(carBuilder); // The CarBuilder is now configured to create SUV cars.
+            Car suvCar = carBuilder.Build();
+
+            CarManualBuilder manualCarBuilder = new CarManualBuilder(); // Knows how to create car manuals.
+
+            director.ConstructSportsCar(carBuilder);
+            CarManual sportsCarManual = manualCarBuilder.Build();
+
+            director.ConstructSUV(carBuilder);
+            CarManual suvCarManual = manualCarBuilder.Build();
         }
     }
 }

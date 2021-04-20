@@ -11,7 +11,7 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
      *  - Single Responsibility Principle: the code that creates the product is isolated (within the factory method CreateAnimal).
      *  - Open/Closed Principle: easy to add new types of products without touching the AnimalFeeder.Feed or Test.Do methods.
      *  CONS:
-     *  - Can introduce several classes.
+     *  - May introduce several classes.
      */
 
     // The base creator class declares the factory method CreateAnimal.
@@ -68,13 +68,12 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
         public string Talk() => "wouaff!";
     }
 
-    public static class Test
+    public static class Sample
     {
-        public static void Do<TAnimalFeeder>()
-            where TAnimalFeeder : AnimalFeeder, new()
+        public static void Do()
         {
-            var animalFeeder = new TAnimalFeeder();
-            animalFeeder.Feed();
+            AnimalFeeder animalFeeder = new CatFeeder();
+            animalFeeder.Feed(); // Internally, create an animal (a cat) with the factory method (CreateAnimal).
         }
     }
 }

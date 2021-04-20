@@ -85,18 +85,17 @@ namespace DesignPatterns.CreationalPatterns.AbstractFactory
         public bool IsSofaBed => true;
     }
     
-    public static class Test
+    public static class Sample
     {
-        public static void Do<TFactory>()
-            where TFactory : IFurnitureFactory, new()
+        public static void Do()
         {
-            var factory = new TFactory();
+            IFurnitureFactory factory = new VictorianFurnitureFactory();
             
-            var chair = factory.CreateChair();
-            var sofa = factory.CreateSofa();
+            IChair chair = factory.CreateChair(); // Creates a Victorian chair.
+            ISofa sofa = factory.CreateSofa();    // Creates a Victorian sofa.
 
-            chair.SitOn();
-            Console.WriteLine($"Is this a sofa bed? {(sofa.IsSofaBed ? "Yes" : "No")}.");
+            chair.SitOn(); // "This is quite comfortable...".
+            Console.WriteLine(sofa.IsSofaBed ? "Yes" : "No"); // "Yes".
         }
     }
 }
