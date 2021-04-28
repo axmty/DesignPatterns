@@ -17,7 +17,7 @@ namespace DesignPatterns.CreationalPatterns.Prototype
      */
 
     // Base prototype.
-    public abstract class Shape
+    abstract class Shape
     {
         private readonly int _x;
         private readonly int _y;
@@ -38,7 +38,7 @@ namespace DesignPatterns.CreationalPatterns.Prototype
     }
 
     // Concrete prototypes.
-    public class Rectangle : Shape
+    class Rectangle : Shape
     {
         private readonly int _width;
         private readonly int _height;
@@ -61,7 +61,7 @@ namespace DesignPatterns.CreationalPatterns.Prototype
         }
     }
 
-    public class Circle : Shape
+    class Circle : Shape
     {
         private readonly int _radius;
 
@@ -81,7 +81,7 @@ namespace DesignPatterns.CreationalPatterns.Prototype
         }
     }
 
-    public static class Sample
+    static class Sample
     {
         public static void Do()
         {

@@ -17,7 +17,7 @@ namespace DesignPatterns.CreationalPatterns.AbstractFactory
      */
 
     // The abstract factory has methods that return abstract products.
-    public interface IFurnitureFactory
+    interface IFurnitureFactory
     {
         IChair CreateChair();
 
@@ -25,14 +25,14 @@ namespace DesignPatterns.CreationalPatterns.AbstractFactory
     }
 
     // Concrete factories produce a family of concrete products.
-    public class VictorianFurnitureFactory : IFurnitureFactory
+    class VictorianFurnitureFactory : IFurnitureFactory
     {
         public IChair CreateChair() => new VictorianChair();
 
         public ISofa CreateSofa() => new VictorianSofa();
     }
 
-    public class ModernFurnitureFactory : IFurnitureFactory
+    class ModernFurnitureFactory : IFurnitureFactory
     {
         public IChair CreateChair() => new ModernChair();
 
@@ -40,7 +40,7 @@ namespace DesignPatterns.CreationalPatterns.AbstractFactory
     }
 
     // Abstract product.
-    public interface IChair
+    interface IChair
     {
         bool HasLegs { get; }
 
@@ -48,7 +48,7 @@ namespace DesignPatterns.CreationalPatterns.AbstractFactory
     }
 
     // Concrete products.
-    public class VictorianChair : IChair
+    class VictorianChair : IChair
     {
         public bool HasLegs => true;
 
@@ -58,7 +58,7 @@ namespace DesignPatterns.CreationalPatterns.AbstractFactory
         }
     }
 
-    public class ModernChair : IChair
+    class ModernChair : IChair
     {
         public bool HasLegs => false;
 
@@ -69,23 +69,23 @@ namespace DesignPatterns.CreationalPatterns.AbstractFactory
     }
 
     // Another abstract product.
-    public interface ISofa
+    interface ISofa
     {
         bool IsSofaBed { get; }
     }
 
     // Another concrete products.
-    public class VictorianSofa : ISofa
+    class VictorianSofa : ISofa
     {
         public bool IsSofaBed => false;
     }
 
-    public class ModernSofa : ISofa
+    class ModernSofa : ISofa
     {
         public bool IsSofaBed => true;
     }
     
-    public static class Sample
+    static class Sample
     {
         public static void Do()
         {
@@ -93,7 +93,7 @@ namespace DesignPatterns.CreationalPatterns.AbstractFactory
             
             IChair chair = factory.CreateChair(); // Creates a Victorian chair.
             ISofa sofa = factory.CreateSofa();    // Creates a Victorian sofa.
-
+            
             chair.SitOn(); // "This is quite comfortable...".
             Console.WriteLine(sofa.IsSofaBed ? "Yes" : "No"); // "Yes".
         }

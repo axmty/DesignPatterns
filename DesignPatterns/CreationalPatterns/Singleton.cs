@@ -18,12 +18,12 @@ namespace DesignPatterns.CreationalPatterns.Singleton
      */
 
     // Singleton class.
-    public class Database
+    class Database
     {
-        private static Database DB; // The unique instance shared through the program.
+        private static Database Db; // The unique instance shared through the program.
 
         // For thread safety, will lock on the following _dbLock object.
-        private static readonly object _dbLock = new object();
+        private static readonly object DbLock = new object();
 
         private Database()
         {
@@ -33,15 +33,15 @@ namespace DesignPatterns.CreationalPatterns.Singleton
 
         public static Database GetInstance()
         {
-            lock (_dbLock)
+            lock (DbLock)
             {
-                if (DB == null)
+                if (Db == null)
                 {
-                    DB = new Database();
+                    Db = new Database();
                 }
             }
 
-            return DB;
+            return Db;
         }
 
         public void Query(string s)
@@ -50,7 +50,7 @@ namespace DesignPatterns.CreationalPatterns.Singleton
         }
     }
 
-    public static class Sample
+    static class Sample
     {
         public static void Do()
         {

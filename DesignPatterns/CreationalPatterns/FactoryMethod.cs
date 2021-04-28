@@ -15,7 +15,7 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
      */
 
     // The base creator class declares the factory method CreateAnimal.
-    public abstract class AnimalFeeder
+    abstract class AnimalFeeder
     {
         protected abstract IAnimal CreateAnimal(); // May provide default implementation.
 
@@ -29,7 +29,7 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
     }
 
     // Concrete creators override the factory method to change the type of the created product.
-    public class CatFeeder : AnimalFeeder
+    class CatFeeder : AnimalFeeder
     {
         protected override IAnimal CreateAnimal()
         {
@@ -37,7 +37,7 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
         }
     }
 
-    public class DogFeeder : AnimalFeeder
+    class DogFeeder : AnimalFeeder
     {
         protected override IAnimal CreateAnimal()
         {
@@ -46,7 +46,7 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
     }
 
     // Product interface.
-    public interface IAnimal
+    interface IAnimal
     {
         string Food();
 
@@ -54,21 +54,21 @@ namespace DesignPatterns.CreationalPatterns.FactoryMethod
     }
 
     // Concrete products created by the concrete creators.
-    public class Cat : IAnimal
+    class Cat : IAnimal
     {
         public string Food() => "fish";
 
         public string Talk() => "miaouuu!";
     }
 
-    public class Dog : IAnimal
+    class Dog : IAnimal
     {
         public string Food() => "dry food";
 
         public string Talk() => "wouaff!";
     }
 
-    public static class Sample
+    static class Sample
     {
         public static void Do()
         {

@@ -15,7 +15,7 @@
      */
 
     // Builder interface, specifies the different steps of product construction.
-    public interface IBuilder
+    interface IBuilder
     {
         void Reset();
 
@@ -27,7 +27,7 @@
     }
 
     // Concrete builders.
-    public class CarBuilder : IBuilder
+    class CarBuilder : IBuilder
     {
         private Car _car;
 
@@ -64,7 +64,7 @@
         }
     }
 
-    public class CarManualBuilder : IBuilder
+    class CarManualBuilder : IBuilder
     {
         private CarManual _carManual;
 
@@ -102,7 +102,7 @@
     }
 
     // Products that can be constructed step by step with the builder.
-    public class Car
+    class Car
     {
         public int Seats { get; set; }
 
@@ -111,7 +111,7 @@
         public string Engine { get; set; }
     }
 
-    public class CarManual
+    class CarManual
     {
         public int Seats { get; set; }
 
@@ -121,7 +121,7 @@
     }
 
     // Director responsible for building steps in a particular sequence, to build particular objects.
-    public class Director
+    class Director
     {
         public void ConstructSportsCar(IBuilder builder)
         {
@@ -140,7 +140,7 @@
         }
     }
 
-    public static class Sample
+    static class Sample
     {
         public static void Do()
         {
